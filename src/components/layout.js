@@ -5,20 +5,23 @@ import { StaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
+const GET_SITE_METADATA = graphql`
+  query GET_SITE_METADATA {
+    site {
+      siteMetadata {
+        title
+        author
+      }
+    }
+  }
+`;
+
 const Layout = ({ children }) => (
   <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
+    query={GET_SITE_METADATA}
+    render={({ site: { siteMetadata } }) => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={siteMetadata.title} />
         <div
           style={{
             margin: `0 auto`,
@@ -29,9 +32,9 @@ const Layout = ({ children }) => (
         >
           <main>{children}</main>
           <footer>
-            © {new Date().getFullYear()}, Built with
+            © {new Date().getFullYear()}, Built by
             {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
+            <a href="https://www.tannerhoffman.space">{siteMetadata.author}</a>
           </footer>
         </div>
       </>
