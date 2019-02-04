@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Garb`,
+    title: `Gatsby Blog Skeleton`,
     description: `Udemy, Gatsby Master Class.`,
     author: `Tanner Hoffman`,
     createdAt: 2019,
